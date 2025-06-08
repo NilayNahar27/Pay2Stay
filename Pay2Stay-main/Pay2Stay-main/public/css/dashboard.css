@@ -1,0 +1,441 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.property-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.property-card:hover {
+    transform: scale(1.05);
+}
+
+.property-card img {
+    background-color: #1E3A8A; 
+    height: 200px;
+    object-fit: cover;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.property-card .card-body {
+    padding: 15px;
+}
+
+.navbar {
+    background-color: #1e3c72; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+    padding: 12px 20px;
+    border-radius: 0 0 12px 12px; 
+}
+
+.navbar-brand {
+    font-size: 1.5rem; 
+    font-weight: bold;
+    color: #ffffff !important; 
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important; 
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f1c40f !important; 
+    transform: scale(1.05); 
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1); 
+}
+
+.btn-primary, .btn-warning, .btn-danger {
+    border-radius: 5px;
+    background-color: #1E3A8A; 
+    color: black;
+}
+
+.text-muted {
+    font-style: italic;
+}
+
+.dropdown-menu {
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    border: 1px solid #ddd; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    min-width: 180px; 
+}
+
+.dropdown-item {
+    color: #1e3c72; 
+    padding: 10px 15px;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background-color: #1e3c72; 
+    color: #ffffff; 
+    border-radius: 6px;
+}
+
+/* Owner Dashboard Container */
+.owner-dashboard {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Heading */
+.dashboard-heading {
+    color: #f8f9fa; 
+    background-color: #34495e; 
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover Effect */
+.dashboard-heading:hover {
+    background-color: #2c3e50;
+    transform: scale(1.03);
+}
+
+/* Dashboard Subheading */
+.dashboard-subheading {
+    font-size: 1.5rem;
+    color: #34495e;
+    border-left: 5px solid #34495e; 
+    padding-left: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Owner Info */
+.dashboard-info {
+    font-size: 1.1rem;
+    color: #555;
+    background: #f8f9fa; 
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease;
+}
+
+/* Hover Effect on Dashboard Info */
+.dashboard-info:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+/* Strong Text */
+.dashboard-info strong {
+    color: #34495e;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .owner-dashboard {
+        padding: 15px;
+    }
+    
+    .dashboard-heading {
+        font-size: 1.6rem;
+    }
+    
+    .dashboard-subheading {
+        font-size: 1.3rem;
+    }
+}
+
+.property-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f8f9fa; 
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.property-table th, .property-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.property-table th {
+    background: linear-gradient(135deg, #3b5998, #192f6a); 
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #ffffff;
+}
+
+.property-table tr:hover {
+    background: rgba(76, 175, 80, 0.15); 
+    transition: 0.3s;
+}
+
+.property-table td {
+    color: #333;
+}
+
+/* Style for the button */
+.property-table a.btn-warning {
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.property-table a.btn-warning:hover {
+    background: #ff9800;
+    color: white;
+    transform: scale(1.05);
+}
+
+.modal-body {
+    background: linear-gradient(135deg, #f0f2f5, #d9e2ec); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.modal-body form {
+    background: #ffffff; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.modal-body .form-label {
+    font-weight: bold;
+    color: #1e3c72; 
+}
+
+.modal-body .form-control {
+    border: 1px solid #1e3c72;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-body .form-control:focus {
+    border-color: #3b5998;
+    box-shadow: 0px 0px 5px rgba(59, 89, 152, 0.5);
+}
+
+.modal-body button {
+    margin-top: 10px;
+}
+
+.modal-body .btn-primary {
+    background: #ff9800;
+    border: none;
+    transition: background 0.3s;
+}
+
+.modal-body .btn-primary:hover {
+    background: #3b5998;
+}
+
+.modal-body .btn-secondary {
+    background: #6c757d;
+    border: none;
+}
+
+.modal-body .btn-secondary:hover {
+    background: #495057;
+}
+
+/* Payment History Styling */
+.payment-history {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-history h4 {
+    color: #1e3c72; 
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.history-table {
+    border-radius: 8px;
+    overflow: hidden;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.history-table th {
+    background: #1e3c72; 
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.history-table td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.history-status.text-success {
+    color: #28a745 !important; 
+    font-weight: bold;
+}
+
+.history-status.text-danger {
+    color: #dc3545 !important; 
+    font-weight: bold;
+}
+
+/* Hover effect for rows */
+.history-table tbody tr:hover {
+    background: #e3f2fd; 
+    transition: 0.3s ease-in-out;
+}
+
+/* Support Section Styling */
+.support-section {
+    background: linear-gradient(135deg, #1e3c72, #3b5998); 
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.support-section h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.support-section p {
+    font-size: 16px;
+}
+
+.support-section a {
+    color: #ffeb3b; 
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.support-section a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Upcoming Rent Payments Section */
+.upcoming-rent {
+    background: #f4f6f9; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-subheading {
+    color: #1e3c72; 
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Card Styling */
+.upcoming-card {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa); 
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+}
+
+.upcoming-card:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Card Content */
+.upcoming-card .card-body {
+    padding: 20px;
+}
+
+.upcoming-card .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.upcoming-card .text-danger {
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc3545; 
+}
+
+.upcoming-card .card-text {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Pay Now Button */
+.upcoming-card .btn-primary {
+    background: #ff9800;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: all 0.3s;
+}
+
+.upcoming-card .btn-primary:hover {
+    background: #15315b;
+}
+
+.flash-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: red; 
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.flash-message.hide {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+.feedback-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feedback-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

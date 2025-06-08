@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard - Pay2Stay</title>
+    <link rel="icon" type="image/jpeg" href="/images/Logo.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Pay2Stay</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/owner/add-property">Add Property</a>
+                    </li>
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">View Profile</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Flash Messages -->
+    <div class="container mt-3">
+        <% if (messages.success) { %>
+            <div class="alert alert-success flash-message">
+                <%= messages.success %>
+            </div>
+        <% } %>
+    
+        <% if (messages.error) { %>
+            <div class="alert alert-danger flash-message">
+                <%= messages.error %>
+            </div>
+        <% } %>
+    </div>
+    
+
+    <div class="container mt-4">
+        <h2 class="dashboard-heading">Welcome, <%= owner.name %>!</h2>
+        <p class="dashboard-info">Your Owner ID: <strong><%= owner.ownerId %></strong></p>
+
+        <!-- Manage Properties Section -->
+        <h3 class="dashboard-subheading mt-4">Your Properties</h3>
+        <div class="row">
+            <% if (properties.length > 0) { %>
+                <% properties.forEach(property => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow property-card">
+                            <img src="<%= property.image %>" class="card-img-top" alt="Property Image">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= property.propertyType %> - ₹<%= property.rent %>/month</h5>
+                                <p class="card-text"><strong>Address:</strong> <%= property.address %></p>
+                                <p class="card-text"><strong>Deposit:</strong> ₹<%= property.deposit %></p>
+                                <p class="card-text"><strong>Light Bill:</strong> ₹<%= property.lightBill %></p>
+                                <% if (property.tenantName) { %>
+                                    <p class="card-text"><strong>Tenant:</strong> <%= property.tenantName %> (<%= property.tenantEmail %>)</p>
+                                <% } else { %>
+                                    <p class="text-muted">No tenant assigned</p>
+                                <% } %>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="/owner/update-property/<%= property._id %>" class="btn btn-primary btn-sm">Update</a>
+                                    
+                                    <% if (property.agreementPdf) { %>
+                                        <a href="/convert-to-pdf/<%= property.agreementPdf.split('/').pop() %>" class="btn btn-warning btn-sm">Download Agreement</a>                                                                                                                                                                                                                                                 
+                                    <% } %>
+                                
+                                    <form action="/owner/delete-property/<%= property._id %>" method="POST" class="mb-0">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this property?')">Delete</button>
+                                    </form>
+                                </div>                                                              
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="text-muted">You have not added any properties yet.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Profile Model -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Owner Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/owner/update-profile" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Name:</strong></label>
+                            <input type="text" class="form-control" name="name" value="<%= owner.name %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Email:</strong></label>
+                            <input type="email" class="form-control" name="email" value="<%= owner.email %>" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Owner ID:</strong></label>
+                            <input type="text" class="form-control" name="ownerId" value="<%= owner.ownerId %>" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Contact Number:</strong></label>
+                            <input type="text" class="form-control" name="contact" value="<%= owner.contact || '' %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Number of Apartments Owned:</strong></label>
+                            <input type="number" class="form-control" name="numApartments" value="<%= owner.numApartments || 0 %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Address:</strong></label>
+                            <input type="text" class="form-control" name="address" value="<%= owner.address || '' %>" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="owner-feedback-section mt-4">
+        <h3 class="text-center dashboard-subheading">Tenant Feedback</h3>
+    
+        <% if (feedbacks.length > 0) { %>
+            <div class="row justify-content-start">
+                <% feedbacks.forEach((feedback, index) => { %>
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch ms-lg-3">
+                        <div class="card feedback-card shadow-sm p-4 mb-4 w-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    🏠 <%= feedback.propertyId?.propertyType + " - " + feedback.propertyId?.address || "Unknown Property" %>
+                                </h5>
+                                <p class="mb-1"><strong>⭐ Rating:</strong> <span class="text-warning"><%= feedback.rating %>/5</span></p>
+                                <p class="mb-1"><strong>👤 Review by:</strong> <%= feedback.reviewerId ? feedback.reviewerId.name : "Anonymous" %></p>
+                                <p class="mb-2"><strong>📝 Comment:</strong> <em>"<%= feedback.comment %>"</em></p>
+                                <small class="text-muted">📅 Submitted on <%= new Date(feedback.dateSubmitted).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %></small>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <p class="text-center text-muted">No feedback received yet.</p>
+        <% } %>
+    </section>
+    
+    
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                const flashMessage = document.querySelector(".flash-message");
+                if (flashMessage) {
+                    flashMessage.classList.add("hide");
+                    setTimeout(() => flashMessage.remove(), 500); 
+                }
+            }, 3000);
+        });
+
+    </script>
+ 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
