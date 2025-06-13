@@ -1,6 +1,6 @@
 Pay2Stay – Smart Property Payment & Feedback Platform
 
- Overview
+Overview:-
 Pay2Stay is a smart property management solution designed for both landlords and tenants. It simplifies rental operations by offering features like secure payment, due-date alerts, role-based access, and daily feedback management.
 
  **Live Demo:** [https://pay2stay.onrender.com](https://pay2stay.onrender.com)
