@@ -23,5 +23,5 @@ Pay2Stay is a smart property management solution designed for both landlords and
 
 ```bash
 git clone https://github.com/yourusername/rentwise.git
-cd rentwise
+cd pay2stay
 npm install
